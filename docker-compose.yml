@@ -12,11 +12,11 @@ services:
   #   volumes:
   #     - ./postgres_data:/var/lib/postgresql/data
 
-  publish-service:
-    build: ./publish-service
+  cv-service:
+    build: ./cv-service
     restart: always
-    image: publish-service
-    container_name: publish-service
+    image: cv-service
+    container_name: cv-service
     environment:
       # - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/demo
       # - SPRING_DATASOURCE_USERNAME=postgres

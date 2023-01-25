@@ -17,7 +17,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>publish-service</module>
+        <module>cv-service</module>
+        <module>applicant-service</module>
     </modules>
 
     <properties>

@@ -3,5 +3,8 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/cv_service
       host: host.docker.internal
+  application:
+    name: cv-service
 server:
   port: 8080
+

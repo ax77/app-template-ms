@@ -1,11 +1,11 @@
-package com.publishservice;
+package com.applicantservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PublishServiceApplication {
+public class ApplicantServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PublishServiceApplication.class, args);
+        SpringApplication.run(ApplicantServiceApplication.class, args);
     }
 }
