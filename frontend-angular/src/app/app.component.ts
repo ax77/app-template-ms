@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. All rights reserved. https://github.com/ax77
+ */
+
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";

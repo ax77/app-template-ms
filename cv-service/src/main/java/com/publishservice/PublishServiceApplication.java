@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023. All rights reserved. https://github.com/ax77
+ */
+
 package com.publishservice;
 
 import com.publishservice.model.CV;
