@@ -124,7 +124,7 @@ testem.log
 # System files
 Thumbs.db
 
-
+/mongo-data
 
 
 

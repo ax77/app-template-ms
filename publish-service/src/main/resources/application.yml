@@ -1,5 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/cv-service
+      uri: mongodb://localhost:27017/cv_service
       host: host.docker.internal
+server:
+  port: 8080
