@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Builder
 @Data
 public class CVRequest {
-    private String name;
+    private String company;
     private String vacancy;
     private BigDecimal salary;
 }

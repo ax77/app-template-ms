@@ -18,7 +18,7 @@ public class CVService {
 
     public void createCv(CVRequest cvRequest) {
         CV cv = CV.builder()
-                .name(cvRequest.getName())
+                .company(cvRequest.getCompany())
                 .salary(cvRequest.getSalary())
                 .vacancy(cvRequest.getVacancy())
                 .build();
@@ -37,7 +37,7 @@ public class CVService {
                 .id(cv.getId())
                 .vacancy(cv.getVacancy())
                 .salary(cv.getSalary())
-                .name(cv.getName()).build();
+                .company(cv.getCompany()).build();
     }
 
 

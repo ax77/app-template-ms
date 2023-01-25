@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Data
 public class CVResponse {
     private String id;
-    private String name;
+    private String company;
     private String vacancy;
     private BigDecimal salary;
 }

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 
-@Document(value = "cv")
+@Document(collection = "cv")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class CV {
     @Id
     private String id;
-    private String name;
+    private String company;
     private String vacancy;
     private BigDecimal salary;
 }

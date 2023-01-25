@@ -2,11 +2,8 @@ package com.publishservice;
 
 import com.publishservice.dto.CVRequest;
 import com.publishservice.dto.CVResponse;
-import com.publishservice.model.CV;
-import com.publishservice.repository.CVRepository;
 import com.publishservice.service.CVService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

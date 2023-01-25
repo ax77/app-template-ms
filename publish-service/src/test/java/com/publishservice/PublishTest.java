@@ -50,7 +50,7 @@ public class PublishTest {
     }
 
     private CVRequest getCvRequest() {
-        return CVRequest.builder().name("ax").salary(BigDecimal.valueOf(16000)).vacancy("prog").build();
+        return CVRequest.builder().company("google").salary(BigDecimal.valueOf(16000)).vacancy("backend").build();
     }
 
 }
