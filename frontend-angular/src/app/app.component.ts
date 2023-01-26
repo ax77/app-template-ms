@@ -3,9 +3,9 @@
  */
 
 import {Component, OnInit} from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import {Form, FormControl, FormGroup} from "@angular/forms";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {FormControl, FormGroup} from "@angular/forms";
 import {CV} from "./entity/cv";
 
 @Component({
