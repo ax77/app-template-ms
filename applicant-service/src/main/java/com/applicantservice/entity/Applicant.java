@@ -21,4 +21,7 @@ public class Applicant {
 
     @Column(name = "name", nullable = false, length = 250)
     private String name;
+
+    @Column(name = "position", nullable = false, length = 250)
+    private String position;
 }
