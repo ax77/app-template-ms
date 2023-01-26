@@ -1,6 +1,30 @@
 version: "3.7"
 services:
 
+  eureka-discovery-server:
+    build: ./eureka-discovery-server
+    restart: always
+    image: eureka-discovery-server
+    container_name: eureka-discovery-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build: ./api-gateway
+    restart: always
+    image: api-gateway
+    container_name: api-gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8181:8080"
+    expose:
+      - "8181"
+    depends_on:
+      - eureka-discovery-server
+
   postgres-applicant-service:
     image: postgres:14.6-alpine
     container_name: postgres-applicant-service
@@ -13,33 +37,6 @@ services:
     volumes:
       - ./data/postgres_applicant_service:/var/lib/postgresql/data
 
-  applicant-service:
-    build: ./applicant-service
-    restart: always
-    image: applicant-service
-    container_name: applicant-service
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-applicant-service:5432/applicant_db
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    ports:
-      - "8081:8081"
-    depends_on:
-      - postgres-applicant-service
-
-  cv-service:
-    build: ./cv-service
-    restart: always
-    image: cv-service
-    container_name: cv-service
-    environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo-cv-service:27017/cv_service
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mongo-cv-service
-
   mongo-cv-service:
     image: mongo:6.0.4-focal
     container_name: mongo-cv-service
@@ -51,6 +48,39 @@ services:
     volumes:
       - ./data/mongo_cv_service:/data/db
 
+  applicant-service:
+    build: ./applicant-service
+    restart: always
+    image: applicant-service
+    container_name: applicant-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-applicant-service:5432/applicant_db
+#      - SPRING_DATASOURCE_USERNAME=postgres
+#      - SPRING_DATASOURCE_PASSWORD=postgres
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres-applicant-service
+      - api-gateway
+      - eureka-discovery-server
+
+  cv-service:
+    build: ./cv-service
+    restart: always
+    image: cv-service
+    container_name: cv-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+#      - SPRING_DATA_MONGODB_URI=mongodb://mongo-cv-service:27017/cv_service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo-cv-service
+      - api-gateway
+      - eureka-discovery-server
+
   angular:
     build: ./frontend-angular
     image: frontend-angular
@@ -60,4 +90,5 @@ services:
       - "4200:4200" # local execution via ng Serve
       - "80:80" # when running in nginx
     depends_on:
-      - mongo-cv-service
+      - cv-service
+      - applicant-service

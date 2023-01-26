@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/applicant_db
+    url: jdbc:postgresql://postgres-applicant-service:5432/applicant_db
     username: postgres
     password: postgres
   jpa:
@@ -16,13 +16,10 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
 
-  application:
-    name: applicant-service
-
 server:
-  port: 0
+  port: 8080
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-discovery-server:8761/eureka

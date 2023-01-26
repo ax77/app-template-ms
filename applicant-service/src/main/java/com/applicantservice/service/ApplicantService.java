@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 public class ApplicantService {
     private final ApplicantRepository applicantRepository;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     public void save(ApplicantRequest applicantRequest) {
         Applicant applicant = Applicant.builder()
@@ -34,7 +34,7 @@ public class ApplicantService {
     // TODO:webclient
     // TODO: hard-coded URL (localhost and cv-service(in docker))
     public CVResponse[] searchCv(String vacancy) {
-        CVResponse[] result = webClient.get()
+        CVResponse[] result = webClientBuilder.build().get()
                 .uri("http://localhost:8080/api/v1/cv/search/vacancy",
                         uriBuilder -> uriBuilder.queryParam("name", vacancy).build())
                 .retrieve().bodyToMono(CVResponse[].class)

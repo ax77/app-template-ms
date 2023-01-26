@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: cv-service
+          uri: lb://cv-service
+          predicates:
+            - Path=/api/v1/cv/**
+        - id: applicant-service
+          uri: lb://applicant-service
+          predicates:
+            - Path=/api/v1/applicant/**
+        - id: eureka-discovery-server
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/web
+        - id: eureka-discovery-server-static
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
