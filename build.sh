@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2023. All rights reserved. https://github.com/ax77
+#
+
 cd ./applicant-service
 mvn clean install -DskipTests
 cd ..
