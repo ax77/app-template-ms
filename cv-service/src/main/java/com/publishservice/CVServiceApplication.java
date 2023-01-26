@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Bean;
 import java.math.BigDecimal;
 
 @SpringBootApplication
-public class PublishServiceApplication {
+public class CVServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PublishServiceApplication.class, args);
+        SpringApplication.run(CVServiceApplication.class, args);
     }
 
     @Bean

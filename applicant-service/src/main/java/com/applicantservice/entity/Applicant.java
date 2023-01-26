@@ -2,7 +2,7 @@
  * Copyright (c) 2023. All rights reserved. https://github.com/ax77
  */
 
-package com.applicantservice.model;
+package com.applicantservice.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

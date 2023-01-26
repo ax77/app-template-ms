@@ -44,5 +44,24 @@ public class CVService {
                 .company(cv.getCompany()).build();
     }
 
+    public List<CVResponse> findByCompany(String company) {
+        List<CV> cvs = cvRepository.findByCompany(company);
+        return cvs.stream().map(this::mapToCvResponse).toList();
+    }
+
+    public List<CVResponse> findByCompanyRegex(String company) {
+        List<CV> cvs = cvRepository.findByCompanyRegex(company);
+        return cvs.stream().map(this::mapToCvResponse).toList();
+    }
+
+    public List<CVResponse> findByVacancy(String vacancy) {
+        List<CV> cvs = cvRepository.findByVacancy(vacancy);
+        return cvs.stream().map(this::mapToCvResponse).toList();
+    }
+
+    public List<CVResponse> findByVacancyRegex(String vacancy) {
+        List<CV> cvs = cvRepository.findByVacancyRegex(vacancy);
+        return cvs.stream().map(this::mapToCvResponse).toList();
+    }
 
 }

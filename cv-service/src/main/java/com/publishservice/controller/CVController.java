@@ -10,28 +10,33 @@ import com.publishservice.payload.JsonResponse;
 import com.publishservice.service.CVService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cv")
+@RequestMapping("/api/v1/cv/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 7200)
 public class CVController {
     private final CVService cvService;
 
-    @PostMapping
+    @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
     public JsonResponse createCV(@RequestBody CVRequest cvRequest) {
         cvService.createCv(cvRequest);
         return new JsonResponse("ok", cvRequest.getCompany());
     }
 
-    @GetMapping
+    @GetMapping("all")
     @ResponseStatus(HttpStatus.OK)
     public List<CVResponse> getAllCvs() {
         return cvService.getAllCvs();
+    }
+
+    @GetMapping("company/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CVResponse> findByCompany(@PathVariable String name) {
+        return cvService.findByCompany(name);
     }
 }

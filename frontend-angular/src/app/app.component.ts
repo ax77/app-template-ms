@@ -13,13 +13,13 @@ import { Observable } from "rxjs";
 })
 export class AppComponent {
 
-  MAIN_API_URL = 'http://localhost:8080/api/';
+  MAIN_API_URL = 'http://localhost:8080/api/v1/cv/';
   AUTH_HTTP_HEADERS = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
   getSettings(): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/api/cv', {
+    return this.http.post<any>(this.MAIN_API_URL + 'create', {
       "company": 'google',
       "vacancy": 'developer',
       "salary": 1600
@@ -28,7 +28,7 @@ export class AppComponent {
     });
   }
 
-  getSettingsResult() {
+  createCv() {
     let response = this.getSettings().subscribe((res) => {
       console.log(res);
     })
