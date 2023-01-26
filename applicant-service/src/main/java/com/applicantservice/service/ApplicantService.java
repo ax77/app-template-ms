@@ -32,6 +32,7 @@ public class ApplicantService {
     }
 
     // TODO:webclient
+    // TODO: hard-coded URL (localhost and cv-service(in docker))
     public CVResponse[] searchCv(String vacancy) {
         CVResponse[] result = webClient.get()
                 .uri("http://localhost:8080/api/v1/cv/search/vacancy",
