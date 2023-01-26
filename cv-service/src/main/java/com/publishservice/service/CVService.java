@@ -20,15 +20,17 @@ import java.util.List;
 public class CVService {
     private final CVRepository cvRepository;
 
-    public void createCv(CVRequest cvRequest) {
+    public CV createCv(CVRequest cvRequest) {
         CV cv = CV.builder()
                 .company(cvRequest.getCompany())
                 .salary(cvRequest.getSalary())
                 .vacancy(cvRequest.getVacancy())
                 .build();
 
-        cvRepository.save(cv);
+        CV result = cvRepository.save(cv);
         log.info("CV {} was saved", cv.getId());
+
+        return result;
     }
 
     public List<CVResponse> getAllCvs() {

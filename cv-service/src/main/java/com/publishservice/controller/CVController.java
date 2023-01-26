@@ -6,9 +6,11 @@ package com.publishservice.controller;
 
 import com.publishservice.dto.CVRequest;
 import com.publishservice.dto.CVResponse;
+import com.publishservice.model.CV;
 import com.publishservice.payload.JsonResponse;
 import com.publishservice.service.CVService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,14 +20,16 @@ import java.util.List;
 @RequestMapping("/api/v1/cv/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 7200)
+@Slf4j
 public class CVController {
     private final CVService cvService;
 
     @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
     public JsonResponse createCV(@RequestBody CVRequest cvRequest) {
-        cvService.createCv(cvRequest);
-        return new JsonResponse("ok", cvRequest.getCompany());
+        log.info("cv-req: {}", cvRequest);
+        CV result = cvService.createCv(cvRequest);
+        return new JsonResponse("ok", result);
     }
 
     @GetMapping("all")

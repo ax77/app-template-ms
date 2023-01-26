@@ -1,5 +1,196 @@
-/*!
- * Copyright (c) 2023. All rights reserved. https://github.com/ax77
- */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --app-border-color: #343434;
+  --app-background-color: #171717;
+  --app-gold-color: #af966d;
+  --app-lightgray-color: rgb(232,232,232);
+  --app-gray-text-color: #5d5d5d;
+  --app-red-color: #c62828;
+  --app-green-color: #0bbba9;
+  --app-blue-color: #007bc9;
+  --app-orange-color: #ff6c37;
+  --app-hover-color: #303030;
+  --app-border-radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--app-background-color);
+  color: var(--app-lightgray-color);
+}
+
+a {
+  color: var(--app-border-color);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--app-hover-color);
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+.card {
+  padding: 1rem;
+  border: var(--app-border-color) 1px dotted;
+  margin: 0.7rem 0;
+  max-width: 600px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-content {
+    margin-bottom: .5rem;
+  }
+}
+
+.list {
+  margin: 0.5rem 0;
+
+  li {
+    padding-bottom: 0.3rem;
+  }
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--app-orange-color);
+  color: var(--app-lightgray-color);
+  border-radius: var(--app-border-radius);
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.form-control {
+  display: block;
+  color: var(--app-gold-color);
+  margin-bottom: .8rem;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date'],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid var(--app-border-color);
+
+  outline: none;
+  background-color: var(--app-lightgray-color);
+}
+
+input[type='submit'],
+button {
+  font: inherit;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid var(--app-border-color);
+}
+
+th,
+td {
+  border: 1px solid var(--app-border-color);
+}
+
+tr {
+  &:hover {
+    background-color: var(--app-hover-color);
+    opacity: 0.8;
+    color: var(--app-green-color);
+  }
+}
+
+td {
+  text-align: left;
+  padding: 4px 18px 4px 18px;
+  user-select: text;
+
+  min-width: 120px;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  z-index: 1;
+  width: 100%;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+
+  &.main {
+    justify-content: center;
+    border-bottom: 1px solid var(--app-background-color);
+  }
+
+  ul {
+    display: flex;
+  }
+
+  li.active a {
+    color: var(--app-border-color);
+    font-weight: bold;
+    cursor: default;
+  }
+
+  a {
+    color: var(--app-gold-color);
+    padding: 0.45rem;
+    margin: 0 0.25rem;
+
+    &:hover {
+      color: var(--app-hover-color);
+    }
+  }
+}

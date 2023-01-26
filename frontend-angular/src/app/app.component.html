@@ -2,6 +2,26 @@
   ~ Copyright (c) 2023. All rights reserved. https://github.com/ax77
   -->
 
-<div>
-  <button (click)="createCv()">Click me</button>
-</div>
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+
+  <div class="form-control">
+    <label for="company">Company:</label>
+    <input id="company" type="text" formControlName="company">
+  </div>
+
+  <div class="form-control">
+    <label for="vacancy">Vacancy:</label>
+    <input id="vacancy" type="text" formControlName="vacancy">
+  </div>
+
+  <div class="form-control">
+    <label for="salary">Salary:</label>
+    <input id="salary" type="text" formControlName="salary">
+  </div>
+
+  <button
+    type="submit"
+    class="btn"
+  >Create CV</button>
+
+</form>
