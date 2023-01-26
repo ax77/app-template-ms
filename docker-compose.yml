@@ -1,16 +1,32 @@
 version: "3.7"
 services:
-  # db:
-  #   image: postgres:14.6-alpine
-  #   container_name: db
-  #   ports:
-  #     - "5433:5432"
-  #   environment:
-  #     - POSTGRES_DB=demo
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #   volumes:
-  #     - ./postgres_data:/var/lib/postgresql/data
+
+  postgres-applicant-service:
+    image: postgres:14.6-alpine
+    container_name: postgres-applicant-service
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=applicant_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres_data_applicant_service:/var/lib/postgresql/data
+
+  applicant-service:
+    build: ./applicant-service
+    restart: always
+    image: applicant-service
+    container_name: applicant-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-applicant-service:5432/applicant_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres-applicant-service
 
   cv-service:
     build: ./cv-service
@@ -18,26 +34,22 @@ services:
     image: cv-service
     container_name: cv-service
     environment:
-      # - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/demo
-      # - SPRING_DATASOURCE_USERNAME=postgres
-      # - SPRING_DATASOURCE_PASSWORD=postgres
-      # - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/cv_service
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo-cv-service:27017/cv_service
     ports:
       - "8080:8080"
     depends_on:
-      - mongo
+      - mongo-cv-service
 
-  mongo:
-    container_name: mongo
-    image: mongo:4.4.14-rc0-focal
+  mongo-cv-service:
+    image: mongo:6.0.4-focal
+    container_name: mongo-cv-service
     restart: always
     ports:
       - "27017:27017"
     expose:
       - "27017"
     volumes:
-      - ./mongo-data:/data/db
+      - ./mongo_data_cv_service:/data/db
 
   angular:
     build: ./frontend-angular
@@ -48,4 +60,4 @@ services:
       - "4200:4200" # local execution via ng Serve
       - "80:80" # when running in nginx
     depends_on:
-      - mongo
+      - mongo-cv-service

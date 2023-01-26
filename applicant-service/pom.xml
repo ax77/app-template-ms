@@ -57,4 +57,14 @@
         </dependency>
     </dependencies>
 
+    <!-- no main manifest attribute, in /app.jar-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
