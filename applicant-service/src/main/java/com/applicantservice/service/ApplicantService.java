@@ -33,7 +33,7 @@ public class ApplicantService {
     // TODO: hard-coded URL (localhost and cv-service(in docker))
     public CVResponse[] searchCv(String vacancy) {
         CVResponse[] result = webClientBuilder.build().get()
-                .uri("http://localhost:8080/api/v1/cv/search/vacancy",
+                .uri("http://cv-service/api/v1/cv/search/vacancy",
                         uriBuilder -> uriBuilder.queryParam("name", vacancy).build())
                 .retrieve().bodyToMono(CVResponse[].class)
                 .block();

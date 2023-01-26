@@ -19,10 +19,8 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     ports:
-      - "8181:8080"
-    expose:
-      - "8181"
-    depends_on:
+      - "8080:8080"
+    links:
       - eureka-discovery-server
 
   postgres-applicant-service:
@@ -55,12 +53,6 @@ services:
     container_name: applicant-service
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-applicant-service:5432/applicant_db
-#      - SPRING_DATASOURCE_USERNAME=postgres
-#      - SPRING_DATASOURCE_PASSWORD=postgres
-#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    ports:
-      - "8081:8081"
     depends_on:
       - postgres-applicant-service
       - api-gateway
@@ -73,9 +65,6 @@ services:
     container_name: cv-service
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATA_MONGODB_URI=mongodb://mongo-cv-service:27017/cv_service
-    ports:
-      - "8080:8080"
     depends_on:
       - mongo-cv-service
       - api-gateway
