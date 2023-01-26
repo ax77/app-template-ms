@@ -5,6 +5,7 @@
 package com.applicantservice.controller;
 
 import com.applicantservice.dto.ApplicantRequest;
+import com.applicantservice.dto.CVResponse;
 import com.applicantservice.service.ApplicantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,4 +25,9 @@ public class ApplicantController {
         applicantService.save(applicantRequest);
     }
 
+    @GetMapping("search/vacancy")
+    @ResponseStatus(HttpStatus.OK)
+    public CVResponse[] searchCvByVacancyRegex(@RequestParam String name) {
+        return applicantService.searchCv(name); // TODO:webclient
+    }
 }

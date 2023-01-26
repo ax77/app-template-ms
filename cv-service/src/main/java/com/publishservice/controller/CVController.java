@@ -38,9 +38,15 @@ public class CVController {
         return cvService.getAllCvs();
     }
 
-    @GetMapping("company/{name}")
+    @GetMapping("search/company/{name}")
     @ResponseStatus(HttpStatus.OK)
     public List<CVResponse> findByCompany(@PathVariable String name) {
         return cvService.findByCompany(name);
+    }
+
+    @GetMapping("search/vacancy")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CVResponse> findByVacancy(@RequestParam String name) {
+        return cvService.findByVacancy(name);
     }
 }
