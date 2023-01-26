@@ -11,7 +11,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - ./postgres_data_applicant_service:/var/lib/postgresql/data
+      - ./data/postgres_applicant_service:/var/lib/postgresql/data
 
   applicant-service:
     build: ./applicant-service
@@ -49,7 +49,7 @@ services:
     expose:
       - "27017"
     volumes:
-      - ./mongo_data_cv_service:/data/db
+      - ./data/mongo_cv_service:/data/db
 
   angular:
     build: ./frontend-angular
