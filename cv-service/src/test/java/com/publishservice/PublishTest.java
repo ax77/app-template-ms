@@ -44,13 +44,19 @@ public class PublishTest {
 
     /// XXX: org.junit.jupiter.api.Test;
     @Test
-    public void test() throws Exception {
+    public void testCreate() throws Exception {
         CVRequest requestDto = getCvRequest();
         String request = objectMapper.writeValueAsString(requestDto);
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/cv")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/cv/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(request))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/cv/all"))
+                .andExpect(status().isOk());
     }
 
     private CVRequest getCvRequest() {
