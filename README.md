@@ -1,5 +1,11 @@
 # Project architecture notes
 
+## Requirements
+- Git
+- JDK 17+
+- Docker, Docker compose
+- Maven
+
 ## Introduction
 - This project is a part of studying the architecture of microservice-based applications.
 - It depends on libraries and technologies, that are widely used nowadays, according to J2EE development.
@@ -17,13 +23,13 @@
 
 ### Technologies used: 
 - [x] Spring Boot
-- [ ] Spring Web (REST API)
-- [ ] Spring Data JPA
+- [x] Spring Web (REST API)
+- [x] Spring Data JPA
 - [x] Spring Data MongoDB
 - [ ] Spring Security
-- [ ] Spring WebFlux
-- [ ] Spring Cloud Netflix Eureka (routing, load balancing)
-- [ ] Spring Cloud Gateway (multiple instances of microservices, their network location)
+- [x] Spring WebFlux
+- [x] Spring Cloud Netflix Eureka (routing, load balancing)
+- [x] Spring Cloud Gateway (multiple instances of microservices, their network location)
 - [ ] Keycloak
 - [x] MongoDB
 - [x] PostgreSQL 
@@ -33,13 +39,23 @@
 - [ ] Mockito
 - [ ] Grafana
 - [ ] Prometheus
-- [ ] Docker, Docker compose
+- [x] Docker, Docker compose
 - [x] Angular UI
 ---
 
 ### Building and running (TODO):
 ```
+git clone https://github.com/ax77/app-template-ms
 cd app-template-ms
-docker compose up
+sh build.sh
+docker-compose up --build -d
 http://localhost:80
 ```
+
+### Notes:
+- You need to wait while all services are registered in eureka-server (30s - 1m).
+
+  You'll see logs like these: \
+  Getting all instance registry info from the eureka server \
+  The response status is 200 \
+  You may check eureka-server: http://localhost:8761/

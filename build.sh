@@ -23,4 +23,5 @@ mvn clean install -DskipTests
 cd ..
 
 cd ./frontend-angular
+npm install
 npm run build
