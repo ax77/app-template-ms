@@ -13,7 +13,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>eureka-discovery-server</artifactId>
+    <artifactId>service-discovery</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

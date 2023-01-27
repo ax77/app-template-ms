@@ -12,11 +12,11 @@ spring:
           uri: lb://applicant-service
           predicates:
             - Path=/api/v1/applicant/**
-        - id: eureka-discovery-server
+        - id: service-discovery
           uri: http://localhost:8761
           predicates:
             - Path=/eureka/web
-        - id: eureka-discovery-server-static
+        - id: service-discovery-static
           uri: http://localhost:8761
           predicates:
             - Path=/eureka/**

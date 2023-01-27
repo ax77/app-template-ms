@@ -1,11 +1,11 @@
 version: "3.7"
 services:
 
-  eureka-discovery-server:
-    build: ./eureka-discovery-server
+  service-discovery:
+    build: ./service-discovery
     restart: always
-    image: eureka-discovery-server
-    container_name: eureka-discovery-server
+    image: service-discovery
+    container_name: service-discovery
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     ports:
@@ -21,7 +21,7 @@ services:
     ports:
       - "8080:8080"
     links:
-      - eureka-discovery-server
+      - service-discovery
 
   postgres-applicant-service:
     image: postgres:14.6-alpine
@@ -56,7 +56,7 @@ services:
     depends_on:
       - postgres-applicant-service
       - api-gateway
-      - eureka-discovery-server
+      - service-discovery
 
   cv-service:
     build: ./cv-service
@@ -68,7 +68,7 @@ services:
     depends_on:
       - mongo-cv-service
       - api-gateway
-      - eureka-discovery-server
+      - service-discovery
 
   angular:
     build: ./frontend-angular

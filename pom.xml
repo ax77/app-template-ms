@@ -23,7 +23,7 @@
     <modules>
         <module>cv-service</module>
         <module>applicant-service</module>
-        <module>eureka-discovery-server</module>
+        <module>service-discovery</module>
         <module>api-gateway</module>
     </modules>
 
